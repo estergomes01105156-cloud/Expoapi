@@ -62,4 +62,8 @@ const s = StyleSheet.create({
     color: "#ffffff",
     fontSize: 22,
   },
+  link: {
+    paddingTop: 20,
+    fontSize: 20,
+  },
 });

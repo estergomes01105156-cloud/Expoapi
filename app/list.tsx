@@ -1,3 +1,4 @@
+import Personagem from "@/components/personagem";
 import { Image } from "expo-image";
 import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
@@ -13,7 +14,7 @@ export default function List() {
         "https://dragonball-api.com/api/characters?page=" + page,
       );
       const data = await response.json();
-      setPersonagens((velho) => [...velho, ...data.items]);
+      setPersonagens((velho: any) => [...velho, ...data.items]);
     } catch (error) {
       console.error(error);
     } finally {
@@ -47,20 +48,7 @@ export default function List() {
           onEndReachedThreshold={0.5}
           data={personagens}
           renderItem={({ item }: any) => {
-            return (
-              <View style={s.personagem}>
-                <Text style={s.titulo}>{item.name}</Text>
-                <Image source={{ uri: item.image }}></Image>
-                <Text>{item.ki}</Text>
-                <View style={s.imageContainer}>
-                  <Image
-                    source={{ uri: item.image }}
-                    style={s.image}
-                    contentFit="cover"
-                  ></Image>
-                </View>
-              </View>
-            );
+            return <Personagem item={item}></Personagem>;
           }}
         />
       )}
